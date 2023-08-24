@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { toast } from 'react-toastify'
 import { useNavigate } from 'react-router-dom'
+import axios from 'axios'
 
 const Register = () => {
     const navigate = useNavigate()
@@ -12,10 +13,25 @@ const Register = () => {
         }))
     }
 
-    const handleSubmit = (e) => {
+    // Base url from env file
+    const baseUrl = import.meta.env.VITE_BASE_URL;
+
+    const handleSubmit = async (e) => {
         e.preventDefault()
-        toast.success("Registered!")
-        setCredentials({ email: "", password: "" })
+        if (credentials.email == "" || credentials.password == "") {
+            toast.error("Fill Out Required Fields")
+            return
+        }
+
+        await axios.post(baseUrl + "/auth/register", credentials).then(res => {
+            toast.success("Registered!")
+            setCredentials({ email: "", password: "" })
+            navigate("/login")
+        }
+        ).catch(err => {
+            toast.error(err.response.data.detail)
+        })
+
     }
     const token = localStorage.getItem("auth-token")
     useEffect(() => {

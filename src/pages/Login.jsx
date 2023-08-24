@@ -13,7 +13,7 @@ const Login = () => {
         }))
     }
     const base_url = import.meta.env.VITE_BASE_URL;
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault()
         if (credentials.email == "" || credentials.password == "") {
             toast.error("Fill Out Required Fields")
@@ -22,7 +22,7 @@ const Login = () => {
         const formData = new FormData()
         formData.append("username", credentials.email)
         formData.append("password", credentials.password)
-        axios.post(base_url + "/auth/login", formData).then(res => {
+        await axios.post(base_url + "/auth/login", formData).then(res => {
             localStorage.setItem("auth-token", res.data.access_token)
             setCredentials({ email: "", password: "" })
             toast.success("Logged In!")
