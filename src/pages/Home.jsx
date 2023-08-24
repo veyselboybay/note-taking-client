@@ -3,11 +3,12 @@ import { useNavigate } from 'react-router'
 
 const Home = () => {
     const navigate = useNavigate()
+    const token = localStorage.getItem("auth-token")
     useEffect(() => {
-        if (!localStorage.getItem("auth-token")) {
+        if (!token) {
             navigate("/login")
         }
-    }, [])
+    }, [token])
     return (
         <div>Home</div>
     )

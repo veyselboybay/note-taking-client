@@ -1,7 +1,9 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { toast } from 'react-toastify'
+import { useNavigate } from 'react-router-dom'
 
 const Register = () => {
+    const navigate = useNavigate()
     const [credentials, setCredentials] = useState({ email: "", password: "" })
     const handleChange = (e) => {
         setCredentials(prev => ({
@@ -15,6 +17,12 @@ const Register = () => {
         toast.success("Registered!")
         setCredentials({ email: "", password: "" })
     }
+    const token = localStorage.getItem("auth-token")
+    useEffect(() => {
+        if (token) {
+            navigate("/")
+        }
+    }, [token])
     return (
         <div className="Auth-form-container">
             <form className="Auth-form">

@@ -1,7 +1,10 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { toast } from 'react-toastify'
+import { useNavigate } from 'react-router-dom'
+import axios from "axios"
 
 const Login = () => {
+    const navigate = useNavigate()
     const [credentials, setCredentials] = useState({ email: "", password: "" })
     const handleChange = (e) => {
         setCredentials(prev => ({
@@ -9,12 +12,28 @@ const Login = () => {
             [e.target.name]: e.target.value
         }))
     }
-
+    const base_url = import.meta.env.VITE_BASE_URL;
     const handleSubmit = (e) => {
         e.preventDefault()
-        setCredentials({ email: "", password: "" })
-        toast.success("Logged In!")
+        if (credentials.email == "" || credentials.password == "") {
+            toast.error("Fill Out Required Fields")
+            return
+        }
+        const formData = new FormData()
+        formData.append("username", credentials.email)
+        formData.append("password", credentials.password)
+        axios.post(base_url + "/auth/login", formData).then(res => {
+            localStorage.setItem("auth-token", res.data.access_token)
+            setCredentials({ email: "", password: "" })
+            toast.success("Logged In!")
+        }).catch(err => toast.error(err.response.data.detail))
     }
+    const token = localStorage.getItem("auth-token")
+    useEffect(() => {
+        if (token) {
+            navigate("/")
+        }
+    }, [token])
     return (
         <div className="Auth-form-container">
             <form className="Auth-form">
