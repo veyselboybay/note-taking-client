@@ -3,6 +3,12 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import { NavLink } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
+import { AiOutlineHome } from 'react-icons/ai'
+import { ImExit } from 'react-icons/im'
+import { CiLogin } from 'react-icons/ci'
+import { BiRegistered } from 'react-icons/bi'
+
+
 
 const NavBar = () => {
     const navigate = useNavigate()
@@ -19,14 +25,14 @@ const NavBar = () => {
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="me-auto">
-                        <NavLink className='nav-link' to='/'>Home</NavLink>
+                        <NavLink className='nav-link' to='/'><AiOutlineHome /> Home</NavLink>
                     </Nav>
                     {!token && <Nav className="me-auto">
-                        <NavLink className='nav-link' to='/register'>Register</NavLink>
-                        <NavLink className='nav-link' to='/login'>Login</NavLink>
+                        <NavLink className='nav-link' to='/register'><BiRegistered /> Register</NavLink>
+                        <NavLink className='nav-link' to='/login'><CiLogin /> Login</NavLink>
                     </Nav>}
                     {token && <Nav className="me-auto">
-                        <NavLink className='nav-link' onClick={() => logout()}>Logout</NavLink>
+                        <NavLink className='nav-link' onClick={() => logout()}><ImExit />Logout</NavLink>
                     </Nav>}
                 </Navbar.Collapse>
             </Container>

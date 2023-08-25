@@ -39,3 +39,33 @@ label {
     font-weight: 600;
     color: rgb(34, 34, 34);
 }
+
+.note-card {
+    margin-bottom: 5px;
+}
+
+.single-note-row {
+    /* justify-content: space-between; */
+    padding: 5px 25px;
+}
+
+.active-col {
+    background-color: lightgreen;
+    border-radius: 5px;
+    padding: 1px 5px;
+    font-weight: bold;
+    text-transform: capitalize;
+}
+
+.date-col {}
+
+.title-col {
+    font-weight: bold;
+    text-transform: capitalize;
+    font-family: verdana;
+}
+
+.note-content {
+    font-family: monospace;
+    text-transform: capitalize;
+}

@@ -7,9 +7,18 @@ import Register from './pages/Register'
 import NotFound from './pages/NotFound'
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css';
+import { useEffect } from 'react'
 
 
 function App() {
+
+  // useEffect(() => {
+
+  //   window.addEventListener("beforeunload", () => {
+  //     localStorage.removeItem("auth-token")
+  //   })
+
+  // }, [])
 
   return (
     <Router>
