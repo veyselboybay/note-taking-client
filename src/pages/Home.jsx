@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router'
 import axios from 'axios'
-import { Container, Row, Button } from 'react-bootstrap'
+import { Container, Row, Button, Modal } from 'react-bootstrap'
 import NothingToShow from '../components/NothingToShow'
 import SingleNote from '../components/SingleNote'
 import Dropdown from 'react-bootstrap/Dropdown';
 import { FiFilter } from 'react-icons/fi'
+import NewNote from '../components/NewNote'
 
 const Home = () => {
     const baseUrl = import.meta.env.VITE_BASE_URL;
@@ -47,7 +48,8 @@ const Home = () => {
                         <Dropdown.Item eventKey="Status-Complete">By Status - Completed</Dropdown.Item>
                     </Dropdown.Menu>
                 </Dropdown>
-                <Button style={{ width: '10rem' }} variant='outline-primary'>+ New Note</Button>
+                {/* <Button style={{ width: '10rem' }} variant='outline-primary'>+ New Note</Button> */}
+                <NewNote />
             </Row>}
             {state !== null && filter === 'All' && state.map(item => <SingleNote key={item.id} {...item} />)}
             {state !== null && filter === 'Status-Active' && state.filter(item => item.isComplete === false).map(item => <SingleNote key={item.id} {...item} />)}

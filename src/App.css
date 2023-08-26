@@ -69,3 +69,19 @@ label {
     font-family: monospace;
     text-transform: capitalize;
 }
+
+.delete-col {
+    background-color: rgb(255, 176, 176);
+    padding: 4px 5px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+}
+
+.change-status-col {
+    background-color: rgba(0, 38, 255, 0.116);
+    border-radius: 5px;
+    padding: 2px 5px;
+    text-transform: capitalize;
+    font-weight: bold;
+    justify-content: center;
+}
