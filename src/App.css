@@ -84,4 +84,5 @@ label {
     text-transform: capitalize;
     font-weight: bold;
     justify-content: center;
+    cursor: pointer;
 }
